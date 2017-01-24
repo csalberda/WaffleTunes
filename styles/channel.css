@@ -1,0 +1,141 @@
+.channelContainer {
+   padding: 0px;
+   margin: 0px;
+}
+
+.channelHeader {
+   padding: 0px;
+   margin: 0px;
+}
+
+.channelHeaderButton {
+   width: 50px;
+   height: 50px;
+   padding: 0px;
+   margin: 0px;
+   border: none;
+}
+
+#expandedIcon{
+   background: url(http://localhost/WaffleTunesHTML/assets/images/expanded.png);
+}
+#collapsedIcon{
+   background: url(http://localhost/WaffleTunesHTML/assets/images/collapsed.png);
+}
+#collapsedIcon{
+   background: url(http://localhost/WaffleTunesHTML/assets/images/collapsed.png);
+}
+#mutedChannel{
+   background: url(http://localhost/WaffleTunesHTML/assets/images/muted.png);
+}
+#unmutedChannel{
+   background: url(http://localhost/WaffleTunesHTML/assets/images/unmuted.png);
+}
+#startOnLoop{
+   background: url(http://localhost/WaffleTunesHTML/assets/images/startOnLoop.png);
+}
+#stopOnLoop{
+   background: url(http://localhost/WaffleTunesHTML/assets/images/stopOnLoop.png);
+}
+.channelNameField{
+   width: 300px;
+   height: 50px;
+   padding: 0px;
+   margin: 0px;
+   font-size: 50px;
+}
+#clearChannel{
+   background: url(http://localhost/WaffleTunesHTML/assets/images/erase.png);
+   float: right;
+}
+#channelSettingsButton{
+   background: url(http://localhost/WaffleTunesHTML/assets/images/settings.png);
+   float: right;
+}
+
+#createNewChannel{
+   width: 250px;
+   height: 50px;
+   padding: 0px;
+   margin: 0px;
+   border: none;
+   background: url(http://localhost/WaffleTunesHTML/assets/images/addChannel.png);
+}
+
+/* Channel Content ************************************************************/
+.channelContent {
+
+}
+
+.channelNotes {
+   vertical-align: top;
+   padding: 0px;
+   margin: 0px;
+   border:none;
+   border-spacing: 0px;
+   border-collapse: collapse;
+   display: inline;
+}
+
+.channelTable {
+   padding: 0px;
+   margin: 0px;
+   border:none;
+   border-spacing: 0px;
+   border-collapse: collapse;
+   display: inline;
+}
+
+th, td {
+    padding: 0;
+}
+
+.tableButtonOn {
+   vertical-align: top;
+   width: 50px;
+   height: 50px;
+   padding: 0px;
+   margin: 0px;
+   opacity: 0.5;
+   border: none;
+   background: url(http://localhost/WaffleTunesHTML/assets/images/singleStaccato.png);
+}
+
+.tableButtonOff {
+   vertical-align: top;
+   width: 50px;
+   height: 50px;
+   padding: 0px;
+   margin: 0px;
+   border: none;
+   background: url(http://localhost/WaffleTunesHTML/assets/images/singleStaccato.png);
+}
+
+
+#bassIcon{
+   background: url(http://localhost/WaffleTunesHTML/assets/images/bass.png);
+}
+#bassDrumIcon{
+   background: url(http://localhost/WaffleTunesHTML/assets/images/bassDrum.png);
+}
+#highHatClosedIcon{
+   background: url(http://localhost/WaffleTunesHTML/assets/images/highHatClosed.png);
+}
+#highHatOpenIcon{
+   background: url(http://localhost/WaffleTunesHTML/assets/images/highHatOpen.png);
+}
+#sawWaveIcon{
+   background: url(http://localhost/WaffleTunesHTML/assets/images/sawWave.png);
+}
+#sineWaveIcon{
+   background: url(http://localhost/WaffleTunesHTML/assets/images/sineWave.png);
+}
+#snareIcon{
+   background: url(http://localhost/WaffleTunesHTML/assets/images/snare.png);
+}
+#squareWaveIcon{
+   background: url(http://localhost/WaffleTunesHTML/assets/images/squareWave.png);
+}
+#triangleWaveIcon{
+   background: url(http://localhost/WaffleTunesHTML/assets/images/triangleWave.png);
+}

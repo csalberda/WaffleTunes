@@ -1,0 +1,92 @@
+#channelSettingsOverlay {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:rgba(0, 0, 0, 0.85);
+}
+
+#channelSettings {
+  position: absolute;
+  top: 20%;
+  bottom: 20%;
+  right: 20%;
+  left: 20%;
+}
+
+.channelSettingsTitle{
+   width: 100%;
+   text-align: center;
+}
+
+#channelSettingsHeader{
+
+}
+
+#channelSettingsName{
+   width: 100%;
+   height: 50px;
+   text-align: center;
+   font-size:35px;
+}
+
+#channelSettingsGrid{
+   background: url(http://localhost/WaffleTunesHTML/assets/images/grid.png);
+}
+#channelSettingsKeyboard{
+   background: url(http://localhost/WaffleTunesHTML/assets/images/keyboard.png);
+}
+#channelSettingsRangeImage{
+   content: url(http://localhost/WaffleTunesHTML/assets/images/keyboardRange.png);
+   height: 50px;
+   width: 300px;
+}
+#channelSettingsExit{
+   background: url(http://localhost/WaffleTunesHTML/assets/images/exit.png);
+}
+#channelSettingsSave{
+   background: url(http://localhost/WaffleTunesHTML/assets/images/save.png);
+}
+#channelSettingsDelete{
+   background: url(http://localhost/WaffleTunesHTML/assets/images/delete.png);
+}
+
+/*#channelSettingsName {
+  width: 90%;
+  text-align: center;
+  display:block;
+  margin: 0 auto;
+  margin-top: 10px;
+  font-size:35px;
+
+}*/
+
+.channelSettingsButton {
+   width: 50px;
+   height: 50px;
+   padding: 0px;
+   margin: 0px;
+   border: none;
+}
+
+.channelSettingsCenterElement{
+   width: 100%;
+   text-align: center;
+   display: block;
+   margin: 0 auto;
+}
+
+#channelSettingsFooter{
+   margin-top: 20px;
+}
+
+#channelSettingsHighNoteSlider{
+   width: 270px;
+}
+#channelSettingsLowNoteSlider{
+   width: 270px;
+}
+#channelSettingsColorSlider{
+   width: 85%;
+}
