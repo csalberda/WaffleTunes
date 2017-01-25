@@ -18,25 +18,25 @@ body{
 }
 
 #playAllChannels{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/play.png);
+   background: url(http://localhost/WaffleTunes/assets/images/play.png);
 }
 #stopOnLoop{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/stopOnLoop.png);
+   background: url(http://localhost/WaffleTunes/assets/images/stopOnLoop.png);
 }
 #loopPlayback{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/loop.png);
+   background: url(http://localhost/WaffleTunes/assets/images/loop.png);
 }
 #stopPlayback{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/stop.png);
+   background: url(http://localhost/WaffleTunes/assets/images/stop.png);
 }
 #noteTypeStaccato{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/staccato.png);
+   background: url(http://localhost/WaffleTunes/assets/images/staccato.png);
 }
 #noteTypeLegato{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/legato.png);
+   background: url(http://localhost/WaffleTunes/assets/images/legato.png);
 }
 #setTempoMinus{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/minus.png);
+   background: url(http://localhost/WaffleTunes/assets/images/minus.png);
    float: right;
 }
 #tempoLabel{
@@ -46,10 +46,10 @@ body{
    float: right;
 }
 #setTempoPlus{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/plus.png);
+   background: url(http://localhost/WaffleTunes/assets/images/plus.png);
    float: right;
 }
 #mainSettingsButton{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/settings.png);
+   background: url(http://localhost/WaffleTunes/assets/images/settings.png);
    float: right;
 }

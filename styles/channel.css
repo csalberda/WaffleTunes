@@ -8,7 +8,7 @@
    margin: 0px;
 }
 
-.channelHeaderButton {
+.channelHeaderButtonUp {
    width: 50px;
    height: 50px;
    padding: 0px;
@@ -16,26 +16,35 @@
    border: none;
 }
 
+.channelHeaderButtonDown {
+   width: 50px;
+   height: 50px;
+   padding: 0px;
+   margin: 0px;
+   border: none;
+   opacity: 0.5;
+}
+
 #expandedIcon{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/expanded.png);
+   background: url(http://localhost/WaffleTunes/assets/images/expanded.png);
 }
 #collapsedIcon{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/collapsed.png);
+   background: url(http://localhost/WaffleTunes/assets/images/collapsed.png);
 }
 #collapsedIcon{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/collapsed.png);
+   background: url(http://localhost/WaffleTunes/assets/images/collapsed.png);
 }
 #mutedChannel{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/muted.png);
+   background: url(http://localhost/WaffleTunes/assets/images/muted.png);
 }
 #unmutedChannel{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/unmuted.png);
+   background: url(http://localhost/WaffleTunes/assets/images/unmuted.png);
 }
 #startOnLoop{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/startOnLoop.png);
+   background: url(http://localhost/WaffleTunes/assets/images/startOnLoop.png);
 }
 #stopOnLoop{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/stopOnLoop.png);
+   background: url(http://localhost/WaffleTunes/assets/images/stopOnLoop.png);
 }
 .channelNameField{
    width: 300px;
@@ -45,11 +54,11 @@
    font-size: 50px;
 }
 #clearChannel{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/erase.png);
+   background: url(http://localhost/WaffleTunes/assets/images/erase.png);
    float: right;
 }
 #channelSettingsButton{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/settings.png);
+   background: url(http://localhost/WaffleTunes/assets/images/settings.png);
    float: right;
 }
 
@@ -59,7 +68,7 @@
    padding: 0px;
    margin: 0px;
    border: none;
-   background: url(http://localhost/WaffleTunesHTML/assets/images/addChannel.png);
+   background: url(http://localhost/WaffleTunes/assets/images/addChannel.png);
 }
 
 /* Channel Content ************************************************************/
@@ -90,7 +99,7 @@ th, td {
     padding: 0;
 }
 
-.tableButtonOn {
+.tableButtonDown {
    vertical-align: top;
    width: 50px;
    height: 50px;
@@ -98,44 +107,46 @@ th, td {
    margin: 0px;
    opacity: 0.5;
    border: none;
-   background: url(http://localhost/WaffleTunesHTML/assets/images/singleStaccato.png);
+   font-size: 20px;
+   background: url(http://localhost/WaffleTunes/assets/images/singleStaccato.png);
 }
 
-.tableButtonOff {
+.tableButtonUp {
    vertical-align: top;
    width: 50px;
    height: 50px;
    padding: 0px;
    margin: 0px;
    border: none;
-   background: url(http://localhost/WaffleTunesHTML/assets/images/singleStaccato.png);
+   font-size: 20px;
+   background: url(http://localhost/WaffleTunes/assets/images/singleStaccato.png);
 }
 
 
 #bassIcon{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/bass.png);
+   background: url(http://localhost/WaffleTunes/assets/images/bass.png);
 }
 #bassDrumIcon{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/bassDrum.png);
+   background: url(http://localhost/WaffleTunes/assets/images/bassDrum.png);
 }
 #highHatClosedIcon{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/highHatClosed.png);
+   background: url(http://localhost/WaffleTunes/assets/images/highHatClosed.png);
 }
 #highHatOpenIcon{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/highHatOpen.png);
+   background: url(http://localhost/WaffleTunes/assets/images/highHatOpen.png);
 }
 #sawWaveIcon{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/sawWave.png);
+   background: url(http://localhost/WaffleTunes/assets/images/sawWave.png);
 }
 #sineWaveIcon{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/sineWave.png);
+   background: url(http://localhost/WaffleTunes/assets/images/sineWave.png);
 }
 #snareIcon{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/snare.png);
+   background: url(http://localhost/WaffleTunes/assets/images/snare.png);
 }
 #squareWaveIcon{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/squareWave.png);
+   background: url(http://localhost/WaffleTunes/assets/images/squareWave.png);
 }
 #triangleWaveIcon{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/triangleWave.png);
+   background: url(http://localhost/WaffleTunes/assets/images/triangleWave.png);
 }

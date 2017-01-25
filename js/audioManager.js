@@ -27,10 +27,17 @@ function recursivePlay(curColumn){
 
    if(curColumn > Tune.channels.channel0.data.length-1){
       console.log("done!");
+
+      //update loop buttons for each channel
+      for (var channel in Tune.channels){
+         console.log(Tune.channels[channel]);
+         //Tune.channels[channel].checkLoopButtons();
+      }
+
       if(Tune.loopPlayback)
-         recursivePlay(0);
+      recursivePlay(0);
       else
-         playTimeout = undefined;
+      playTimeout = undefined;
       return;
    }
    else{

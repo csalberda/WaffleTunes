@@ -32,24 +32,24 @@
 }
 
 #channelSettingsGrid{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/grid.png);
+   background: url(http://localhost/WaffleTunes/assets/images/grid.png);
 }
 #channelSettingsKeyboard{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/keyboard.png);
+   background: url(http://localhost/WaffleTunes/assets/images/keyboard.png);
 }
 #channelSettingsRangeImage{
-   content: url(http://localhost/WaffleTunesHTML/assets/images/keyboardRange.png);
+   content: url(http://localhost/WaffleTunes/assets/images/keyboardRange.png);
    height: 50px;
    width: 300px;
 }
 #channelSettingsExit{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/exit.png);
+   background: url(http://localhost/WaffleTunes/assets/images/exit.png);
 }
 #channelSettingsSave{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/save.png);
+   background: url(http://localhost/WaffleTunes/assets/images/save.png);
 }
 #channelSettingsDelete{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/delete.png);
+   background: url(http://localhost/WaffleTunes/assets/images/delete.png);
 }
 
 /*#channelSettingsName {

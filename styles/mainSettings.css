@@ -28,13 +28,13 @@
 }
 
 #mainSettingsExit{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/exit.png);
+   background: url(http://localhost/WaffleTunes/assets/images/exit.png);
 }
 #mainSettingsSave{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/save.png);
+   background: url(http://localhost/WaffleTunes/assets/images/save.png);
 }
 #mainSettingsDelete{
-   background: url(http://localhost/WaffleTunesHTML/assets/images/delete.png);
+   background: url(http://localhost/WaffleTunes/assets/images/delete.png);
 }
 
 .mainSettingsButton {
