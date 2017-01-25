@@ -30,8 +30,7 @@ function recursivePlay(curColumn){
 
       //update loop buttons for each channel
       for (var channel in Tune.channels){
-         console.log(Tune.channels[channel]);
-         //Tune.channels[channel].checkLoopButtons();
+         Tune.channels[channel].checkLoopButtons();
       }
 
       if(Tune.loopPlayback)

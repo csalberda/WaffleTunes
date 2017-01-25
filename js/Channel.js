@@ -7,19 +7,20 @@ function Channel(_instrumentName) {
    //Add to Tune object
    this.channelName = "channel"+Tune.numOfChannels;
 
-   Tune.channels[this.channelName] = {};
+   Tune.channels[this.channelName] = this;
+   console.log(Tune);
    Tune.channels[this.channelName].instrument = _instrumentName;
    Tune.channels[this.channelName].bgColor = arrColors[Tune.numOfChannels%6];
 
    Tune.numOfChannels++;
 
    //Add channel div
-   this.channelDiv = document.createElement("div");
-   this.channelDiv.id = this.channelName;
-   this.channelDiv.className = "channelContainer";
-   this.channelDiv.name = this.channelName;
+   this.htmlChannelDiv = document.createElement("div");
+   this.htmlChannelDiv.id = this.channelName;
+   this.htmlChannelDiv.className = "channelContainer";
+   this.htmlChannelDiv.name = this.channelName;
 
-   document.getElementById("allChannelsContainer").appendChild(this.channelDiv);
+   document.getElementById("allChannelsContainer").appendChild(this.htmlChannelDiv);
 
    this.createNewChannelHeader();
    this.createNewChannelContent();
@@ -32,92 +33,92 @@ Channel.prototype.createNewChannelHeader = function(){
    var _this = this;
 
    //create channel header div
-   var newChannelHeaderDiv = document.createElement("div");
-   newChannelHeaderDiv.id = this.channelName+"Header";
-   newChannelHeaderDiv.className = "channelHeader";
-   newChannelHeaderDiv.style.background = Tune.channels[this.channelName].bgColor;
+   var htmlChannelHeaderDiv = document.createElement("div");
+   htmlChannelHeaderDiv.id = this.channelName+"Header";
+   htmlChannelHeaderDiv.className = "channelHeader";
+   htmlChannelHeaderDiv.style.background = Tune.channels[this.channelName].bgColor;
 
 
-   this.expandedButton = document.createElement("button");
-   this.expandedButton.type = "button";
-   this.expandedButton.id = "expandedIcon";
-   this.expandedButton.className = "channelHeaderButtonUp";
-   this.expandedButton.addEventListener('click', function(){
+   this.htmlExpandedButton = document.createElement("button");
+   this.htmlExpandedButton.type = "button";
+   this.htmlExpandedButton.id = "expandedIcon";
+   this.htmlExpandedButton.className = "channelHeaderButtonUp";
+   this.htmlExpandedButton.addEventListener('click', function(){
       _this.collapseChannel();
    });
 
    Tune.channels[this.channelName]["instrument"] = "bass";
-   this.instrumentButton = document.createElement("button");
-   this.instrumentButton.type = "button";
-   this.instrumentButton.id = "bassIcon";
-   this.instrumentButton.className = "channelHeaderButtonUp";
-   this.instrumentButton.addEventListener('click', function(){
+   this.htmlInstrumentButton = document.createElement("button");
+   this.htmlInstrumentButton.type = "button";
+   this.htmlInstrumentButton.id = "bassIcon";
+   this.htmlInstrumentButton.className = "channelHeaderButtonUp";
+   this.htmlInstrumentButton.addEventListener('click', function(){
       _this.channelInstrument();
    });
 
    Tune.channels[this.channelName]["muted"] = false;
-   this.muteButton = document.createElement("button");
-   this.muteButton.type = "button";
-   this.muteButton.id = "unmutedChannel";
-   this.muteButton.className = "channelHeaderButtonUp";
-   this.muteButton.addEventListener('click', function(){
+   this.htmlMuteButton = document.createElement("button");
+   this.htmlMuteButton.type = "button";
+   this.htmlMuteButton.id = "unmutedChannel";
+   this.htmlMuteButton.className = "channelHeaderButtonUp";
+   this.htmlMuteButton.addEventListener('click', function(){
       _this.muteChannel();
    });
 
    Tune.channels[this.channelName]["startOnLoop"] = false;
-   this.startOnLoopButton = document.createElement("button");
-   this.startOnLoopButton.type = "button";
-   this.startOnLoopButton.id = "startOnLoop";
-   this.startOnLoopButton.className = "channelHeaderButtonUp";
-   this.startOnLoopButton.addEventListener('click', function(){
+   this.htmlStartOnLoopButton = document.createElement("button");
+   this.htmlStartOnLoopButton.type = "button";
+   this.htmlStartOnLoopButton.id = "startOnLoop";
+   this.htmlStartOnLoopButton.className = "channelHeaderButtonUp";
+   this.htmlStartOnLoopButton.addEventListener('click', function(){
       _this.startChannelOnLoop();
    });
 
    Tune.channels[this.channelName]["stopOnLoop"] = false;
-   this.stopOnLoopButton = document.createElement("button");
-   this.stopOnLoopButton.type = "button";
-   this.stopOnLoopButton.id = "stopOnLoop";
-   this.stopOnLoopButton.className = "channelHeaderButtonUp";
-   this.stopOnLoopButton.addEventListener('click', function(){
+   this.htmlStopOnLoopButton = document.createElement("button");
+   this.htmlStopOnLoopButton.type = "button";
+   this.htmlStopOnLoopButton.id = "stopOnLoop";
+   this.htmlStopOnLoopButton.className = "channelHeaderButtonUp";
+   this.htmlStopOnLoopButton.addEventListener('click', function(){
       _this.stopChannelOnLoop();
    });
 
    Tune.channels[this.channelName]["name"] = "My Melody";
-   this.channelNameField = document.createElement("input");
-   this.channelNameField.type = "text";
-   this.channelNameField.id = this.channelName+"NameField";
-   this.channelNameField.className = "channelNameField";
-   this.channelNameField.value = Tune.channels[this.channelName]["name"];
+   this.htmlChannelNameField = document.createElement("input");
+   this.htmlChannelNameField.type = "text";
+   this.htmlChannelNameField.id = this.channelName+"NameField";
+   this.htmlChannelNameField.className = "channelNameField";
+   this.htmlChannelNameField.value = Tune.channels[this.channelName]["name"];
 
-   this.clearButton = document.createElement("button");
-   this.clearButton.type = "button";
-   this.clearButton.id = "clearChannel";
-   this.clearButton.className = "channelHeaderButtonUp";
-   this.clearButton.addEventListener('click', function(){
+   this.htmlClearButton = document.createElement("button");
+   this.htmlClearButton.type = "button";
+   this.htmlClearButton.id = "clearChannel";
+   this.htmlClearButton.className = "channelHeaderButtonUp";
+   this.htmlClearButton.addEventListener('click', function(){
       _this.clearChannel();
    });
 
-   this.settingsButton = document.createElement("button");
-   this.settingsButton.type = "button";
-   this.settingsButton.id = "channelSettingsButton";
-   this.settingsButton.className = "channelHeaderButtonUp";
-   this.settingsButton.addEventListener('click', function(){
+   this.htmlSettingsButton = document.createElement("button");
+   this.htmlSettingsButton.type = "button";
+   this.htmlSettingsButton.id = "channelSettingsButton";
+   this.htmlSettingsButton.className = "channelHeaderButtonUp";
+   this.htmlSettingsButton.addEventListener('click', function(){
       new ChannelSettings(_this.channelName);
    });
 
    //Add them all to the channel header div
-   newChannelHeaderDiv.appendChild(this.expandedButton);
-   newChannelHeaderDiv.appendChild(this.instrumentButton);
-   newChannelHeaderDiv.appendChild(this.channelNameField);
+   htmlChannelHeaderDiv.appendChild(this.htmlExpandedButton);
+   htmlChannelHeaderDiv.appendChild(this.htmlInstrumentButton);
+   htmlChannelHeaderDiv.appendChild(this.htmlChannelNameField);
 
-   newChannelHeaderDiv.appendChild(this.muteButton);
-   newChannelHeaderDiv.appendChild(this.startOnLoopButton);
-   newChannelHeaderDiv.appendChild(this.stopOnLoopButton);
+   htmlChannelHeaderDiv.appendChild(this.htmlMuteButton);
+   htmlChannelHeaderDiv.appendChild(this.htmlStartOnLoopButton);
+   htmlChannelHeaderDiv.appendChild(this.htmlStopOnLoopButton);
 
-   newChannelHeaderDiv.appendChild(this.settingsButton);
-   newChannelHeaderDiv.appendChild(this.clearButton);
+   htmlChannelHeaderDiv.appendChild(this.htmlSettingsButton);
+   htmlChannelHeaderDiv.appendChild(this.htmlClearButton);
 
-   this.channelDiv.appendChild(newChannelHeaderDiv);
+   this.htmlChannelDiv.appendChild(htmlChannelHeaderDiv);
 }
 
 /******************************************************************************
@@ -126,16 +127,16 @@ Channel.prototype.createNewChannelHeader = function(){
 Channel.prototype.createNewChannelContent = function(){
 
    //create channel content div
-   this.contentDiv = document.createElement("div");
-   this.contentDiv.id = this.channelName+"Content";
-   this.contentDiv.className = "channelContent";
-   this.channelDiv.style.background = "dark"+Tune.channels[this.channelName].bgColor;
+   this.htmlContentDiv = document.createElement("div");
+   this.htmlContentDiv.id = this.channelName+"Content";
+   this.htmlContentDiv.className = "channelContent";
+   this.htmlChannelDiv.style.background = "dark"+Tune.channels[this.channelName].bgColor;
 
 
    this.createNewChannelNotes();
    this.createNewChannelTable();
 
-   this.channelDiv.appendChild(this.contentDiv);
+   this.htmlChannelDiv.appendChild(this.htmlContentDiv);
 }
 
 /******************************************************************************
@@ -166,7 +167,7 @@ Channel.prototype.createNewChannelNotes = function(){
       newNotes.appendChild(tr);
    }
 
-   this.contentDiv.appendChild(newNotes)
+   this.htmlContentDiv.appendChild(newNotes)
 }
 
 /******************************************************************************
@@ -209,20 +210,20 @@ Channel.prototype.createNewChannelTable = function(){
       newTable.appendChild(tr);
    }
 
-   this.contentDiv.appendChild(newTable)
+   this.htmlContentDiv.appendChild(newTable)
 }
 
 /******************************************************************************
 * Collapse the specified channel's contents
 *******************************************************************************/
 Channel.prototype.collapseChannel = function(){
-   if(this.contentDiv.style.display == "none"){
-      this.contentDiv.style.display = "inline";
-      this.expandedButton.id = "expandedIcon";
+   if(this.htmlContentDiv.style.display == "none"){
+      this.htmlContentDiv.style.display = "inline";
+      this.htmlExpandedButton.id = "expandedIcon";
    }
    else{
-      this.contentDiv.style.display = "none";
-      this.expandedButton.id = "collapsedIcon";
+      this.htmlContentDiv.style.display = "none";
+      this.htmlExpandedButton.id = "collapsedIcon";
    }
 }
 
@@ -274,7 +275,7 @@ Channel.prototype.channelInstrument = function(){
 
 
    Tune.channels[this.channelName].instrument = arrInstuments[(index+1)%arrInstuments.length];
-   this.instrumentButton.id = Tune.channels[this.channelName].instrument+"Icon";
+   this.htmlInstrumentButton.id = Tune.channels[this.channelName].instrument+"Icon";
 }
 
 /******************************************************************************
@@ -288,9 +289,9 @@ Channel.prototype.muteChannel = function(_bool){
    Tune.channels[this.channelName].muted = _bool;
 
    if(Tune.channels[this.channelName].muted)
-   this.muteButton.id = "mutedChannel";
+   this.htmlMuteButton.id = "mutedChannel";
    else
-   this.muteButton.id = "unmutedChannel";
+   this.htmlMuteButton.id = "unmutedChannel";
 }
 
 /******************************************************************************
@@ -299,10 +300,10 @@ Channel.prototype.muteChannel = function(_bool){
 Channel.prototype.startChannelOnLoop = function(){
 
    Tune.channels[this.channelName].startOnLoop = !Tune.channels[this.channelName].startOnLoop;
-   this.startOnLoopButton.className = (Tune.channels[this.channelName].startOnLoop)?"channelHeaderButtonDown":"channelHeaderButtonUp";
+   this.htmlStartOnLoopButton.className = (Tune.channels[this.channelName].startOnLoop)?"channelHeaderButtonDown":"channelHeaderButtonUp";
 
    Tune.channels[this.channelName].stopOnLoop = false;
-   this.stopOnLoopButton.className = "channelHeaderButtonUp";
+   this.htmlStopOnLoopButton.className = "channelHeaderButtonUp";
 }
 
 /******************************************************************************
@@ -311,24 +312,24 @@ Channel.prototype.startChannelOnLoop = function(){
 Channel.prototype.stopChannelOnLoop = function(_bool){
 
    Tune.channels[this.channelName].stopOnLoop = !Tune.channels[this.channelName].stopOnLoop;
-   this.stopOnLoopButton.className = (Tune.channels[this.channelName].stopOnLoop)?"channelHeaderButtonDown":"channelHeaderButtonUp";
+   this.htmlStopOnLoopButton.className = (Tune.channels[this.channelName].stopOnLoop)?"channelHeaderButtonDown":"channelHeaderButtonUp";
 
    Tune.channels[this.channelName].startOnLoop = false;
-   this.startOnLoopButton.className = "channelHeaderButtonUp";
+   this.htmlStartOnLoopButton.className = "channelHeaderButtonUp";
 
 }
 
 Channel.prototype.checkLoopButtons = function(){
-   console.log("updateLoopButtons");
 
-   if(Tune.channels[this.channelName].startOnLoop){
-      console.log("start!");
-      muteChannel(false);
-   }
-   else if (Tune.channels[this.channelName].stopOnLoop) {
-      console.log("stop!");
-      muteChannel(true);
-   }
+   if(Tune.channels[this.channelName].startOnLoop)
+      this.muteChannel(false);
+   else if (Tune.channels[this.channelName].stopOnLoop)
+      this.muteChannel(true);
+
+   this.htmlStartOnLoopButton.className = "channelHeaderButtonUp";
+   this.htmlStopOnLoopButton.className = "channelHeaderButtonUp";
+   this.startOnLoop = false;
+   this.stopOnLoop = false;
 
 }
 
