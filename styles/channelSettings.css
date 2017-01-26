@@ -16,6 +16,7 @@
 }
 
 .channelSettingsTitle{
+   margin: 5px;
    width: 100%;
    text-align: center;
 }
@@ -42,6 +43,12 @@
    height: 50px;
    width: 300px;
 }
+#channelSettingsDiatonic{
+   background: url(http://localhost/WaffleTunes/assets/images/diatonic.png);
+}
+#channelSettingsChromatic{
+   background: url(http://localhost/WaffleTunes/assets/images/chromatic.png);
+}
 #channelSettingsExit{
    background: url(http://localhost/WaffleTunes/assets/images/exit.png);
 }
@@ -62,12 +69,21 @@
 
 }*/
 
-.channelSettingsButton {
+.channelSettingsButtonUp {
    width: 50px;
    height: 50px;
    padding: 0px;
    margin: 0px;
    border: none;
+}
+
+.channelSettingsButtonDown {
+   width: 50px;
+   height: 50px;
+   padding: 0px;
+   margin: 0px;
+   border: none;
+   opacity: 0.5;
 }
 
 .channelSettingsCenterElement{

@@ -19,6 +19,7 @@ function ChannelSettings(_channelName) {
    this.channelSettingsDiv.appendChild(this.channelSettingsNameInput);
 
    this.createChannelSettingsType(this.channelSettingsDiv);
+   this.createChannelSettingsScale(this.channelSettingsDiv);
    this.createChannelSettingsRange(this.channelSettingsDiv);
    this.createChannelSettingsColor(this.channelSettingsDiv);
    this.createChannelSettingsFooter(this.channelSettingsDiv);
@@ -32,6 +33,7 @@ function ChannelSettings(_channelName) {
 * a keyboard for improv :)
 *******************************************************************************/
 ChannelSettings.prototype.createChannelSettingsType = function(){
+   var _this = this;
 
    var channelSettingsTypeDiv = document.createElement("div");
    channelSettingsTypeDiv.id = "channelSettingsType";
@@ -41,21 +43,66 @@ ChannelSettings.prototype.createChannelSettingsType = function(){
    channelSettingsTypeHeader.className = "channelSettingsTitle";
    channelSettingsTypeHeader.innerHTML = "Type";
 
-   var channelSettingsTypeGrid = document.createElement("button");
-   channelSettingsTypeGrid.type = "button";
-   channelSettingsTypeGrid.id = "channelSettingsGrid";
-   channelSettingsTypeGrid.className = "channelSettingsButton";
+   Tune.channels[this.channelName].type = "grid";
+   this.channelSettingsTypeGrid = document.createElement("button");
+   this.channelSettingsTypeGrid.type = "button";
+   this.channelSettingsTypeGrid.id = "channelSettingsGrid";
+   this.channelSettingsTypeGrid.className = "channelSettingsButtonDown";
+   this.channelSettingsTypeGrid.addEventListener('click', function(){
+      _this.typeSelected("grid");
+   });
 
-   var channelSettingsTypeKeyboard = document.createElement("button");
-   channelSettingsTypeKeyboard.type = "button";
-   channelSettingsTypeKeyboard.id = "channelSettingsKeyboard";
-   channelSettingsTypeKeyboard.className = "channelSettingsButton";
+   this.channelSettingsTypeKeyboard = document.createElement("button");
+   this.channelSettingsTypeKeyboard.type = "button";
+   this.channelSettingsTypeKeyboard.id = "channelSettingsKeyboard";
+   this.channelSettingsTypeKeyboard.className = "channelSettingsButtonUp";
+   this.channelSettingsTypeKeyboard.addEventListener('click', function(){
+      _this.typeSelected("keyboard");
+   });
 
    channelSettingsTypeDiv.appendChild(channelSettingsTypeHeader);
-   channelSettingsTypeDiv.appendChild(channelSettingsTypeGrid);
-   channelSettingsTypeDiv.appendChild(channelSettingsTypeKeyboard);
+   channelSettingsTypeDiv.appendChild(this.channelSettingsTypeGrid);
+   channelSettingsTypeDiv.appendChild(this.channelSettingsTypeKeyboard);
 
    this.channelSettingsDiv.appendChild(channelSettingsTypeDiv);
+}
+
+/******************************************************************************
+* Define chromatic vs diatonic
+*******************************************************************************/
+ChannelSettings.prototype.createChannelSettingsScale = function(){
+   var _this = this;
+
+   var channelSettingsScaleDiv = document.createElement("div");
+   channelSettingsScaleDiv.id = "channelSettingsScale";
+   channelSettingsScaleDiv.className = "channelSettingsCenterElement";
+
+   var channelSettingsScaleHeader = document.createElement("h1");
+   channelSettingsScaleHeader.className = "channelSettingsTitle";
+   channelSettingsScaleHeader.innerHTML = "Scale";
+
+   this.channelSettingsScaleDiatonic = document.createElement("button");
+   this.channelSettingsScaleDiatonic.type = "button";
+   this.channelSettingsScaleDiatonic.id = "channelSettingsDiatonic";
+   this.channelSettingsScaleDiatonic.className = "channelSettingsButtonUp";
+   this.channelSettingsScaleDiatonic.addEventListener('click', function(){
+      _this.scaleSelected("diatonic");
+   });
+
+   Tune.channels[this.channelName].scale = "diatonic";
+   this.channelSettingsScaleChromatic = document.createElement("button");
+   this.channelSettingsScaleChromatic.type = "button";
+   this.channelSettingsScaleChromatic.id = "channelSettingsChromatic";
+   this.channelSettingsScaleChromatic.className = "channelSettingsButtonDown";
+   this.channelSettingsScaleChromatic.addEventListener('click', function(){
+      _this.scaleSelected("chromatic");
+   });
+
+   channelSettingsScaleDiv.appendChild(channelSettingsScaleHeader);
+   channelSettingsScaleDiv.appendChild(this.channelSettingsScaleDiatonic);
+   channelSettingsScaleDiv.appendChild(this.channelSettingsScaleChromatic);
+
+   this.channelSettingsDiv.appendChild(channelSettingsScaleDiv);
 }
 
 /******************************************************************************
@@ -125,7 +172,7 @@ ChannelSettings.prototype.createChannelSettingsFooter = function(){
    var channelSettingsExit = document.createElement("button");
    channelSettingsExit.type = "button";
    channelSettingsExit.id = "channelSettingsExit";
-   channelSettingsExit.className = "channelSettingsButton";
+   channelSettingsExit.className = "channelSettingsButtonUp";
    channelSettingsExit.addEventListener('click', function(e){
       _this.cancelChannelSettings();
    });
@@ -133,7 +180,7 @@ ChannelSettings.prototype.createChannelSettingsFooter = function(){
    var channelSettingsSave = document.createElement("button");
    channelSettingsSave.type = "button";
    channelSettingsSave.id = "channelSettingsSave";
-   channelSettingsSave.className = "channelSettingsButton";
+   channelSettingsSave.className = "channelSettingsButtonUp";
    channelSettingsSave.addEventListener('click', function(e){
       _this.saveChannelSettings();
    });
@@ -141,7 +188,7 @@ ChannelSettings.prototype.createChannelSettingsFooter = function(){
    var channelSettingsDelete = document.createElement("button");
    channelSettingsDelete.type = "button";
    channelSettingsDelete.id = "channelSettingsDelete";
-   channelSettingsDelete.className = "channelSettingsButton";
+   channelSettingsDelete.className = "channelSettingsButtonUp";
    channelSettingsDelete.addEventListener('click', function(e){
       _this.deleteChannel();
    });
@@ -153,6 +200,48 @@ ChannelSettings.prototype.createChannelSettingsFooter = function(){
    this.channelSettingsDiv.appendChild(channelSettingsFooterDiv);
 }
 
+
+
+
+
+
+/******************************************************************************
+* Type (Grid/Keyboard) selected
+*******************************************************************************/
+ChannelSettings.prototype.typeSelected = function(_strType){
+   var _this = this;
+
+   Tune.channels[_this.channelName].type = _strType;
+   switch (_strType) {
+      case "grid":
+         _this.channelSettingsTypeGrid.className = "channelSettingsButtonDown";
+         _this.channelSettingsTypeKeyboard.className = "channelSettingsButtonUp";
+      break;
+      case "keyboard":
+         _this.channelSettingsTypeGrid.className = "channelSettingsButtonUp";
+         _this.channelSettingsTypeKeyboard.className = "channelSettingsButtonDown";
+      break;
+   }
+}
+
+/******************************************************************************
+* Scale (Diatonic/Chromatic) selected
+*******************************************************************************/
+ChannelSettings.prototype.scaleSelected = function(_strScale){
+   var _this = this;
+
+   Tune.channels[_this.channelName].scale = _strScale;
+   switch (_strScale) {
+      case "diatonic":
+         _this.channelSettingsScaleDiatonic.className = "channelSettingsButtonDown";
+         _this.channelSettingsScaleChromatic.className = "channelSettingsButtonUp";
+      break;
+      case "chromatic":
+         _this.channelSettingsScaleDiatonic.className = "channelSettingsButtonUp";
+         _this.channelSettingsScaleChromatic.className = "channelSettingsButtonDown";
+      break;
+   }
+}
 
 /******************************************************************************
 * Cancel/close the current dialog
