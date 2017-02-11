@@ -34,9 +34,11 @@ function recursivePlay(curColumn){
       }
 
       if(Tune.loopPlayback)
-      recursivePlay(0);
-      else
-      playTimeout = undefined;
+         recursivePlay(0);
+      else{
+         playTimeout = undefined;
+         Tune.bPlaying = false;
+      }
       return;
    }
    else{
@@ -45,7 +47,7 @@ function recursivePlay(curColumn){
          if(!Tune.channels["channel"+i].muted){
             for (var y=0; y<Tune.getNumOfColumns(); y++) {
                if(Tune.channels["channel"+i].data[curColumn][y]){ //(if not duration 0)
-                  playNote(Tune.channels["channel"+i].instrument, y, Tune.tempo);
+                  playNote(Tune.channels["channel"+i].instrument, y, Tune.tempo, Tune.channels["channel"+i].volume);
                }
             }
          }
@@ -57,13 +59,14 @@ function recursivePlay(curColumn){
 /*******************************************************************************
 * Play a single note given the instrument name, pitch, and duration
 *******************************************************************************/
-function playNote(_instrumentName, _y, _duration){
+function playNote(_instrumentName, _y, _duration, _volume){
 
    var sound = audioSamples[_instrumentName].play();
 
    //MAGIC FORMULA: set the rate based on the _y pos
    var rate = Math.pow((Math.pow(2,(1/12))),(defaultTableHeight-_y));
    audioSamples[_instrumentName].rate(rate, sound);
+   audioSamples[_instrumentName].volume(_volume, sound);
 
    setTimeout(function(){ audioSamples[_instrumentName].stop(sound); }, _duration);
 }
@@ -72,6 +75,7 @@ function playNote(_instrumentName, _y, _duration){
 * Stop the looping playback
 *******************************************************************************/
 function stopPlayback (_sprite){
+   Tune.bPlaying = false;
    clearTimeout(playTimeout);
    playTimeout = undefined;
 }

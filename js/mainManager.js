@@ -4,7 +4,10 @@
 function playAllChannels(){
    console.log("playAllChannels");
 
-   recursivePlay(0);
+   if(!Tune.bPlaying){
+      Tune.bPlaying = true;
+      recursivePlay(0);
+   }
 }
 
 /******************************************************************************
@@ -17,14 +20,6 @@ function loopPlayback(_button){
    _button.id = "loopPlayback";
    else
    _button.id = "stopOnLoop";
-}
-
-/******************************************************************************
-* Stops the playback of all channels
-*******************************************************************************/
-function stopPlayback(){
-   console.log("stopPlayback");
-   stopPlayback();
 }
 
 /******************************************************************************
@@ -44,14 +39,15 @@ function noteType(_button){
 /******************************************************************************
 * Inc/Dec the tempo
 *******************************************************************************/
-function setTempo(_value){
+function setTempo(_action){
+   var tempoLabel = document.getElementById("tempoLabel");
 
-   if(_value == "minus")
-   console.log("setTempo: "+_value);
-   else if(_value == "plus")
-   console.log("setTempo: "+_value);
-   else
-   console.log("setTempo: "+_value);
+   if(_action == "minus")
+      Tune.tempo -= 10;
+   else if(_action == "plus")
+      Tune.tempo += 10;
+
+   tempoLabel.innerHTML = Tune.tempo;
 }
 
 /******************************************************************************

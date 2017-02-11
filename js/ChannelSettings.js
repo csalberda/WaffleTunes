@@ -247,7 +247,6 @@ ChannelSettings.prototype.scaleSelected = function(_strScale){
 * Cancel/close the current dialog
 *******************************************************************************/
 ChannelSettings.prototype.cancelChannelSettings = function(){
-   console.log("cancelChannelSettings");
    var channelSettingsOverlay = document.getElementById("channelSettingsOverlay");
    document.body.removeChild(channelSettingsOverlay);
 }
@@ -258,8 +257,9 @@ ChannelSettings.prototype.cancelChannelSettings = function(){
 ChannelSettings.prototype.saveChannelSettings = function(){
    console.log("saveChannelSettings");
 
+   //Save name
    Tune.channels[this.channelName]["name"] = this.channelSettingsNameInput.value;
-   var channelNameField = document.getElementById("channel"+this.channelName+"NameField");
+   var channelNameField = document.getElementById(this.channelName+"NameField");
    channelNameField.value = this.channelSettingsNameInput.value;
 
 

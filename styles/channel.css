@@ -84,6 +84,7 @@
    border-spacing: 0px;
    border-collapse: collapse;
    display: inline;
+   white-space: nowrap;
 }
 
 .channelTable {
@@ -93,6 +94,7 @@
    border-spacing: 0px;
    border-collapse: collapse;
    display: inline;
+   white-space: nowrap;
 }
 
 th, td {

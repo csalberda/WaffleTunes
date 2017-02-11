@@ -8,7 +8,6 @@ function Channel(_instrumentName) {
    this.channelName = "channel"+Tune.numOfChannels;
 
    Tune.channels[this.channelName] = this;
-   console.log(Tune);
    Tune.channels[this.channelName].instrument = _instrumentName;
    Tune.channels[this.channelName].bgColor = arrColors[Tune.numOfChannels%6];
 
@@ -56,15 +55,6 @@ Channel.prototype.createNewChannelHeader = function(){
       _this.channelInstrument();
    });
 
-   Tune.channels[this.channelName]["muted"] = false;
-   this.htmlMuteButton = document.createElement("button");
-   this.htmlMuteButton.type = "button";
-   this.htmlMuteButton.id = "unmutedChannel";
-   this.htmlMuteButton.className = "channelHeaderButtonUp";
-   this.htmlMuteButton.addEventListener('click', function(){
-      _this.muteChannel();
-   });
-
    Tune.channels[this.channelName]["startOnLoop"] = false;
    this.htmlStartOnLoopButton = document.createElement("button");
    this.htmlStartOnLoopButton.type = "button";
@@ -89,6 +79,29 @@ Channel.prototype.createNewChannelHeader = function(){
    this.htmlChannelNameField.id = this.channelName+"NameField";
    this.htmlChannelNameField.className = "channelNameField";
    this.htmlChannelNameField.value = Tune.channels[this.channelName]["name"];
+   this.htmlChannelNameField.addEventListener('change', function(){
+      _this.nameFieldChanged();
+   });
+
+   Tune.channels[this.channelName]["muted"] = false;
+   this.htmlMuteButton = document.createElement("button");
+   this.htmlMuteButton.type = "button";
+   this.htmlMuteButton.id = "unmutedChannel";
+   this.htmlMuteButton.className = "channelHeaderButtonUp";
+   this.htmlMuteButton.addEventListener('click', function(){
+      _this.muteChannel();
+   });
+
+   Tune.channels[this.channelName]["volume"] = 100;
+   this.htmlChannelVolume = document.createElement("input");
+   this.htmlChannelVolume.type = "range";
+   this.htmlChannelVolume.min = 0;
+   this.htmlChannelVolume.max = 100;
+   this.htmlChannelVolume.value = 100;
+   this.htmlChannelVolume.id = "channelVolume";
+   this.htmlChannelVolume.addEventListener('change', function(){
+      _this.channelVolumeChanged();
+   });
 
    this.htmlClearButton = document.createElement("button");
    this.htmlClearButton.type = "button";
@@ -111,9 +124,10 @@ Channel.prototype.createNewChannelHeader = function(){
    htmlChannelHeaderDiv.appendChild(this.htmlInstrumentButton);
    htmlChannelHeaderDiv.appendChild(this.htmlChannelNameField);
 
-   htmlChannelHeaderDiv.appendChild(this.htmlMuteButton);
    htmlChannelHeaderDiv.appendChild(this.htmlStartOnLoopButton);
    htmlChannelHeaderDiv.appendChild(this.htmlStopOnLoopButton);
+   htmlChannelHeaderDiv.appendChild(this.htmlMuteButton);
+   htmlChannelHeaderDiv.appendChild(this.htmlChannelVolume);
 
    htmlChannelHeaderDiv.appendChild(this.htmlSettingsButton);
    htmlChannelHeaderDiv.appendChild(this.htmlClearButton);
@@ -200,6 +214,10 @@ Channel.prototype.createNewChannelTable = function(){
          button.id = this.channelName+"_"+x+"_"+y;
          button.type = "button";
          button.className = "tableButtonUp";
+
+         if(!(parseInt(x/Tune.timeSignature)%2))
+            button.style.angle = "0.8";
+
          button.addEventListener('click', function(e){
             _this.tableNoteSelected(this);
          });
@@ -236,7 +254,7 @@ Channel.prototype.instrumentNoteSelected = function(_button){
    var channelName = arr[0];
    var row = parseInt(arr[1]);
 
-   playNote(Tune.channels[channelName].instrument, row, Tune.tempo);
+   playNote(Tune.channels[channelName].instrument, row, Tune.tempo, 1.0);
 }
 
 /******************************************************************************
@@ -256,7 +274,10 @@ Channel.prototype.tableNoteSelected = function(_button){
       _button.className = "tableButtonUp";
    }
    else{
-      playNote(Tune.channels[channelName].instrument, row, Tune.tempo);
+
+      if(!Tune.bPlaying)
+         playNote(Tune.channels[channelName].instrument, row, Tune.tempo, 1.0);
+
       //update Tune data
       Tune.channels[channelName].data[col][row] = Tune.tempo;
       //update HTML table
@@ -309,6 +330,15 @@ Channel.prototype.startChannelOnLoop = function(){
 /******************************************************************************
 * Stop specified channel on loop
 *******************************************************************************/
+Channel.prototype.nameFieldChanged = function(){
+
+   Tune.channels[this.channelName].name = this.htmlChannelNameField.value
+
+}
+
+/******************************************************************************
+* Name field has changed
+*******************************************************************************/
 Channel.prototype.stopChannelOnLoop = function(_bool){
 
    Tune.channels[this.channelName].stopOnLoop = !Tune.channels[this.channelName].stopOnLoop;
@@ -331,6 +361,17 @@ Channel.prototype.checkLoopButtons = function(){
    this.startOnLoop = false;
    this.stopOnLoop = false;
 
+}
+
+/******************************************************************************
+* Channel volume slider (0-100) -> (0.0-1.0)
+*******************************************************************************/
+Channel.prototype.channelVolumeChanged = function(){
+   Tune.channels[this.channelName]["volume"] = this.htmlChannelVolume.value/100;
+
+   if(this.htmlChannelVolume.value == 0){
+      this.muteChannel(true);
+   }
 }
 
 /******************************************************************************
