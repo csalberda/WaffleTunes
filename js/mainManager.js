@@ -61,8 +61,8 @@ function deleteAllChannels(){
 * Add a new Channel
 *******************************************************************************/
 function addChannel(){
-   var newChannel = new Channel("bass");
-   new ChannelSettings(newChannel.channelName);
+   //var newChannel = new Channel("bass");
+   new ChannelSettings("New Channel");
 }
 
 /******************************************************************************

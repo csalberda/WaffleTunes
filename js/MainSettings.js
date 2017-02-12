@@ -126,16 +126,18 @@ MainSettings.prototype.saveMainSettings = function(){
 }
 
 /******************************************************************************
-* Deletes the entire specified main
+* Deletes all channels
 *******************************************************************************/
 MainSettings.prototype.deleteMain = function(){
-   console.log("deleteMain");
-   var mainDiv = document.getElementById(this.mainName);
-   mainDiv.parentNode.removeChild(mainDiv);
-   Tune.numOfmains--;
 
-   if(Tune.numOfmains == 0)
+   console.log("deleteAllChannels");
+
+   for(var channelName in Tune.channels) {
+      var channelDiv = document.getElementById(channelName);
+      channelDiv.parentNode.removeChild(channelDiv);
+      Tune.numOfChannels--;
+   }
    stopPlayback();
 
-   this.cancelmainSettings();
+   this.cancelMainSettings();
 }

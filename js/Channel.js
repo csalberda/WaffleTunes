@@ -2,12 +2,13 @@
 * Creates all the necessary components for a new channel and adds it to the
 * channels object.
 *******************************************************************************/
-function Channel(_instrumentName) {
+function Channel(_channelName, _instrumentName, _type, _scale) {
    this._this = this;
    //Add to Tune object
    this.channelName = "channel"+Tune.numOfChannels;
 
    Tune.channels[this.channelName] = this;
+   Tune.channels[this.channelName].customName = _channelName
    Tune.channels[this.channelName].instrument = _instrumentName;
    Tune.channels[this.channelName].bgColor = arrColors[Tune.numOfChannels%6];
 
@@ -73,12 +74,11 @@ Channel.prototype.createNewChannelHeader = function(){
       _this.stopChannelOnLoop();
    });
 
-   Tune.channels[this.channelName]["name"] = "My Melody";
    this.htmlChannelNameField = document.createElement("input");
    this.htmlChannelNameField.type = "text";
    this.htmlChannelNameField.id = this.channelName+"NameField";
    this.htmlChannelNameField.className = "channelNameField";
-   this.htmlChannelNameField.value = Tune.channels[this.channelName]["name"];
+   this.htmlChannelNameField.value = Tune.channels[this.channelName]["customName"];
    this.htmlChannelNameField.addEventListener('change', function(){
       _this.nameFieldChanged();
    });
@@ -332,7 +332,7 @@ Channel.prototype.startChannelOnLoop = function(){
 *******************************************************************************/
 Channel.prototype.nameFieldChanged = function(){
 
-   Tune.channels[this.channelName].name = this.htmlChannelNameField.value
+   Tune.channels[this.channelName].customName = this.htmlChannelNameField.value
 
 }
 

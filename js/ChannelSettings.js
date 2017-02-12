@@ -10,12 +10,12 @@ function ChannelSettings(_channelName) {
 
    this.channelSettingsDiv = document.createElement("div");
    this.channelSettingsDiv.id = "channelSettings";
-   this.channelSettingsDiv.style.background = Tune.channels[_channelName].bgColor;
+   this.channelSettingsDiv.style.background = "gray";
 
    this.channelSettingsNameInput = document.createElement("input");
    this.channelSettingsNameInput.id = "channelSettingsName";
    this.channelSettingsNameInput.type = "text";
-   this.channelSettingsNameInput.value = Tune.channels[this.channelName]["name"];
+   this.channelSettingsNameInput.value = (Tune.channels[_channelName] == undefined)?"New Channel":Tune.channels[_channelName].customName;
    this.channelSettingsDiv.appendChild(this.channelSettingsNameInput);
 
    this.createChannelSettingsType(this.channelSettingsDiv);
@@ -41,9 +41,9 @@ ChannelSettings.prototype.createChannelSettingsType = function(){
 
    var channelSettingsTypeHeader = document.createElement("h1");
    channelSettingsTypeHeader.className = "channelSettingsTitle";
-   channelSettingsTypeHeader.innerHTML = "Type";
+   channelSettingsTypeHeader.innerHTML = "Input Type";
 
-   Tune.channels[this.channelName].type = "grid";
+   //Tune.channels[this.channelName].type = "grid";
    this.channelSettingsTypeGrid = document.createElement("button");
    this.channelSettingsTypeGrid.type = "button";
    this.channelSettingsTypeGrid.id = "channelSettingsGrid";
@@ -89,7 +89,7 @@ ChannelSettings.prototype.createChannelSettingsScale = function(){
       _this.scaleSelected("diatonic");
    });
 
-   Tune.channels[this.channelName].scale = "diatonic";
+   //Tune.channels[this.channelName].scale = "diatonic";
    this.channelSettingsScaleChromatic = document.createElement("button");
    this.channelSettingsScaleChromatic.type = "button";
    this.channelSettingsScaleChromatic.id = "channelSettingsChromatic";
@@ -257,11 +257,13 @@ ChannelSettings.prototype.cancelChannelSettings = function(){
 ChannelSettings.prototype.saveChannelSettings = function(){
    console.log("saveChannelSettings");
 
-   //Save name
-   Tune.channels[this.channelName]["name"] = this.channelSettingsNameInput.value;
-   var channelNameField = document.getElementById(this.channelName+"NameField");
-   channelNameField.value = this.channelSettingsNameInput.value;
-
+   //Create the channel based on the settings inputs
+   var newChannel = new Channel(
+      this.channelSettingsNameInput.value,
+      "bass",
+      (this.channelSettingsTypeGrid.id == "channelSettingsGrid")? "grid":"keyboard",
+      (this.channelSettingsScaleDiatonic.id == "channelSettingsDiatonic")? "diatonic":"chromatic"
+   );
 
    this.cancelChannelSettings();
 }
